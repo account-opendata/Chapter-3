@@ -1,52 +1,53 @@
 # Chapter-3
 第三章算例中涉及的数据与产消者参数
 
-# Overview  
-This project is a instruction for the ***parameters*** and ***historical datasets*** of the case studies in our paper  ***"A Best Response Learning assisted Asynchronous ADMM for Real-Time Energy Sharing with Delay"***. Besides, the ***Appendix*** shown here, where the proofs of the Propositions are presented in detail.  
+# 概述  
+本项目是博士论文 _**《智能配电网产消者能量共享优化方法研究》-“第三章 考虑信息交互时延影响的异步迭代优化方法”**_ 中案例研究参数的说明文档。  
 
-> _**2_Prosumers**_: The parameters and historical dataset of the case studies on energy sharing with 2 prosumers.  
-> _**10_Prosumers**_: The parameters and historical dataset of the case studies on energy sharing with 10 prosumers.  
-> _**50_Prosumers**_: The parameters and historical dataset of the case studies on energy sharing with 50 prosumers.  
-> _**100_Prosumers**_: The parameters and historical dataset of the case studies on energy sharing with 100 prosumers.
+> _**2_Prosumers**_：包含 2 个产消者的能源共享案例研究参数与历史数据集。  
+> _**10_Prosumers**_：包含 10 个产消者的能源共享案例研究参数与历史数据集。  
+> _**50_Prosumers**_：包含 50 个产消者的能源共享案例研究参数与历史数据集。  
+> _**100_Prosumers**_：包含 100 个产消者的能源共享案例研究参数与历史数据集。
 
-# Requirements
+# 环境要求
 >Python 3  
 >Numpy  
-# Opening method
-Take _**2_Prosumers**_ as an example, there are two type files. <br>
-The  ***"Decision_Making_Model_Parameters.npy"*** is the parameters of prosumers' decision-making model. <br>
-The ***"pr_data i.xlsx"***" contains the data obtained by historical successful communication (Randomly generated).<br>
 
-## Run the following code in Python to open the ***"Decision_Making_Model_Parameters.npy"***.
+# 打开方式
+以 _**2_Prosumers**_ 为例，包含两类文件。<br>
+***"Decision_Making_Model_Parameters.npy"*** 为产消者决策模型的参数。<br>
+***"pr_data i.xlsx"*** 包含通过历史成功通信获得的数据（随机生成）。<br>
+
+## 在 Python 中运行以下代码即可打开 ***"Decision_Making_Model_Parameters.npy"***。
 ```Python
 import numpy as np
 dict_ = np.load('Decision_Making_Model_Parameters.npy',allow_pickle = True).item()
 ```
-# Parameters Description
-### Our parameters are structured in the form of a dictionary, where the meaning of different keys are explained as follows:  
 
->_**'Qi'**_ : It refers to the _**Q<sub>i</sub>**_ in formula (2a);  
->_**'di'**_ : It refers to the _**d<sub>i</sub>**_ in formula (2a);   
->_**'Ai'**_ : It refers to the coefficient matrix of _**x<sub>i,r</sub>**_ in the inequality of formula (2b);  
->_**'Bi'**_ : It refers to the boundary vector of _**x<sub>i,r</sub>**_ in the inequality of formula (2b);  
->_**'E'**_ : It refers to the coefficient matrix of _**x<sub>i,r</sub>**_ in the equality of formula (2b);  
->_**'Di'**_ : It refers to the _**D<sub>i</sub>**_ in formula (2b);  
+# 参数说明
+### 我们的参数以字典（dictionary）的形式构建，不同键（key）的具体含义解释如下：  
 
-# Historical dataset Description
-### The historical dataset is recorded by .xlsx file, where the meaning of different columns is explained as follows:
+>_**'Qi'**_ : 指代文中的 _**Q<sub>i</sub>**_；  
+>_**'di'**_ : 指代文中的 _**d<sub>i</sub>**_；   
+>_**'Ai'**_ : 指代文中 _**x<sub>i,r</sub>**_ 的系数矩阵；  
+>_**'Bi'**_ : 指代文中 _**x<sub>i,r</sub>**_ 的边界向量；  
+>_**'E'**_ : 指代文中 _**x<sub>i,r</sub>**_ 的系数矩阵；  
+>_**'Di'**_ : 指代文中 _**D<sub>i</sub>**_。  
 
->_**'Resource 1'**_ :  It refers to the upper boundary of Resource 1 in the successful communication data (the lower boundary defaults to 0);  
->_**'Resource 2'**_ :  It refers to the upper boundary of Resource 2 in the successful communication data (the lower boundary defaults to 0);    
->_**'Price'**_ :       It refers to the shadow price (or multiplier lamda) in the successful communication data;   
->_**'Demand'**_ :      It refers to the power demand (or _**D<sub>i</sub>**_) in the successful communication data;     
->_**'virtual_var'**_ : It refers to the auxiliary variable _**y<sub>i,sh</sub>**_ in the successful communication data;  
->_**'trade_volumn'**_ : It refers to the best response _**x<sub>i,sh</sub>**_ in the successful communication data;
+# 历史数据集说明
+### 历史数据集以 .xlsx 文件记录，不同列的具体含义解释如下：
 
-# heterogeneous prosumers Description
-### The heterogeneous prosumers is recorded in "two heterogeneous prosumers.npy" file, where the meaning of different parameters is explained as follows:
->_**'Obj'**_ : It refers to the form of cost function. There are two value: Foursq (quartic function) and Twosq (quadratic function);  
->_**'Con'**_ : It refers to the form of constraint function. There are two value: Twosq (quadratic function) and Linear (Linear function);  
->When Obj is Twosq and Con is linear, the form is consistent with the description of parameter above;  
->When Obj is Foursq, Qi and di refer to the coefficients of the quartic and quadratic terms in the cost function, respectively;  
->When Con is Linear, Ai and Bi refer to the coefficients of the quadratic and constant terms in the constraint function, respectively.
+>_**'Resource 1'**_ : 指代成功通信数据中资源 1 的上界（下界默认为 0）；  
+>_**'Resource 2'**_ : 指代成功通信数据中资源 2 的上界（下界默认为 0）；    
+>_**'Price'**_ : 指代成功通信数据中的影子价格（或乘子 lamda）；   
+>_**'Demand'**_ : 指代成功通信数据中的电力需求（或 _**D<sub>i</sub>**_）；     
+>_**'virtual_var'**_ : 指代成功通信数据中的辅助变量 _**y<sub>i,sh</sub>**_；  
+>_**'trade_volumn'**_ : 指代成功通信数据中的最优响应 _**x<sub>i,sh</sub>**_。
 
+# 异质产消者说明
+### 异质产消者记录在 "two heterogeneous prosumers.npy" 文件中，不同参数的具体含义解释如下：
+>_**'Obj'**_ : 指代成本函数的形式。有两个值：Foursq（四次函数）和 Twosq（二次函数）；  
+>_**'Con'**_ : 指代约束函数的形式。有两个值：Twosq（二次函数）和 Linear（线性函数）；  
+>当 Obj 为 Twosq 且 Con 为 Linear 时，形式与上述参数说明一致；  
+>当 Obj 为 Foursq 时，Qi 和 di 分别指代成本函数中四次项和二次项的系数；  
+>当 Con 为 Linear 时，Ai 和 Bi 分别指代约束函数中二次项和常数项的系数。
